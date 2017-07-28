@@ -22,6 +22,8 @@ board = [
   '%s-----%s-----%s'
 ].join("\n")
 
+valid_move = /[OMIomi][1-8]/
+
 until game.over
   puts board % game.serialized_pieces
   if game.unplaced_red > 0
@@ -30,6 +32,16 @@ until game.over
   if game.unplaced_blue > 0
     puts "Blue: #{'o'*game.unplaced_blue}".blue
   end
+  puts "To play: #{game.to_play}"
 
-  sleep 10
+  puts "Enter square (O = outer, M = middle, I = inner) followed by space (1-8)"
+  puts "Eg, M1 = middle square, top left"
+  puts "    I5 = inner square, middle right"
+  puts "    O7 = outer square, bottom centre"
+  point = ''
+  until valid_move.match(point) && game.free(point)
+    print "> "
+    point = gets.chomp
+  end
+  puts "<<#{point}>>"
 end

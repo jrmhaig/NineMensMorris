@@ -26,4 +26,16 @@ RSpec.describe NineMensMorris do
       expect(game.unplaced_blue).to eq 9
     end
   end
+
+  describe '#to_play' do
+    it 'shows red to play' do
+      expect(game.to_play).to eq 'Red'.red
+    end
+  end
+
+  describe '#free' do
+    it 'indicates a space is free' do
+      expect(game.free('O1')).to be_truthy
+    end
+  end
 end

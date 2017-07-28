@@ -16,4 +16,12 @@ class NineMensMorris
   def unplaced_blue
     9
   end
+
+  def to_play
+    'Red'.red
+  end
+
+  def free point
+    true
+  end
 end
