@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.expand_path('../../lib', __FILE__)
+
+require 'nine_mens_morris'
+
+game = NineMensMorris.new
+
+board = [
+  '%s-----%s-----%s',
+  '|     |     |',
+  '| %s---%s---%s |',
+  '| |   |   | |',
+  '| | %s-%s-%s | |',
+  '| | |   | | |',
+  '%s-%s-%s   %s-%s-%s',
+  '| | |   | | |',
+  '| | %s-%s-%s | |',
+  '| |   |   | |',
+  '| %s---%s---%s |',
+  '|     |     |',
+  '%s-----%s-----%s'
+].join("\n")
+
+until game.over
+  puts board % game.serialized_pieces
+  if game.unplaced_red > 0
+    puts "Red:  #{'o'*game.unplaced_red}".red
+  end
+  if game.unplaced_blue > 0
+    puts "Blue: #{'o'*game.unplaced_blue}".blue
+  end
+
+  sleep 10
+end
